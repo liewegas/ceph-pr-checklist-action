@@ -9,15 +9,13 @@ const axios = require('axios');
 	
 	const r = await axios.get(url);
 	const lines = r.data.body.split('\n');
-	
-	console.log('lines');
-	console.log(`lines are "${lines[0]}"`);
-	let errors = [];
 	for (var i = 0; i < lines.length; ++i) {
 	    lines[i] = lines[i].replace(/(\r\n|\n|\r)/gm, "");
 	}
+	
+	let errors = [];
 	for (var i = 0; i < lines.length; ++i) {
-	    console.log(`line ${i} is "${lines[i]}"`);
+	    //console.log(`line ${i} is "${lines[i]}"`);
 	    if (lines[i] == 'Checklist'
 		&& i < lines.length - 2
 		&& lines[i+1][0] == '=') {
@@ -44,8 +42,10 @@ const axios = require('axios');
 	}
 
 	if (errors.length) {
-	    console.log(`Errors: ${errors.join('; ')}`);
-	    core.setOutput("errors", errors.join('; '));
+	    const msg = errors.join('; ');
+	    console.log(`Checklist incomplete: ${msg}`);
+	    core.setOutput("errors", msg);
+	    core.setFailed(msg);
 	}
     } catch (error) {
 	console.log(`Error: ${error.message}`);
