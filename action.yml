@@ -1,9 +1,5 @@
 name: 'Ceph PR checklist'
 description: 'Verify a PR has completed checklist items'
-inputs:
-  description:
-    description: 'PR description'
-    required: true
 outputs:
   errors:
     description: 'Items still needing attention'
