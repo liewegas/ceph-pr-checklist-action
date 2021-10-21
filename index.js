@@ -45,6 +45,8 @@ const axios = require('axios');
 	    for (const err of errors) {
 		core.error(err);
 	    }
+	    const msg = errors.join('; ');
+	    core.setFailed(msg);
 	}
     } catch (error) {
 	console.log(`Error: ${error.message}`);
