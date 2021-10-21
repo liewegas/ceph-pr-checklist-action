@@ -45,6 +45,7 @@ const axios = require('axios');
 	    const msg = errors.join('; ');
 	    console.log(`Checklist incomplete: ${msg}`);
 	    core.setOutput("errors", msg);
+	    core.error(msg);
 	    core.setFailed(msg);
 	}
     } catch (error) {
