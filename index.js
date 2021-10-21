@@ -34,7 +34,7 @@ const axios = require('axios');
 			if (i >= lines.length) break;
 		    }
 		    console.log(`section ${section} ... checked = ${checked}`);
-		    if (checked) {
+		    if (!checked) {
 			errors.push(`Must check an item from ${section}`);
 		    }
 		}
